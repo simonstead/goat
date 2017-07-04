@@ -8,3 +8,8 @@ class HomePageTest(TestCase):
     def test_home_page_returns_correct_html(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
+
+    def test_home_page_processes_POST_request(self):
+        item_message = "A new list item"
+        response = self.client.post('/', data={'item_text': item_message})
+        self.assertIn(item_message, response.content.decode())
