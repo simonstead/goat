@@ -13,3 +13,4 @@ class HomePageTest(TestCase):
         item_message = "A new list item"
         response = self.client.post('/', data={'item_text': item_message})
         self.assertIn(item_message, response.content.decode())
+        self.assertTemplateUsed(response, 'home.html')
